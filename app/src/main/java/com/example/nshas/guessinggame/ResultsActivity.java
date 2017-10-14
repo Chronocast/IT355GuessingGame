@@ -16,10 +16,6 @@ public class ResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-
-
-
-
         Button reStartGame = (Button) findViewById(R.id.reStartGame);
         reStartGame.setOnClickListener(new View.OnClickListener()
         {
