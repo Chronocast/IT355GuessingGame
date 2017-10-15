@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.util.Random;
 
@@ -12,6 +13,8 @@ public class GuessingActivity extends AppCompatActivity
 
     //instantiate random number var
     int randy;
+    Random randall;
+    TextView debugHint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -19,16 +22,19 @@ public class GuessingActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_guessing);
 
-        randy = new Random().nextInt(21);
+        randall = new Random();
+        randy = randall.nextInt((20-0)+1);
 
         //EditText for number
         EditText guessEditText = (EditText) findViewById(R.id.guessEditText);
-        int guess = Integer.parseInt(guessEditText.getText().toString());
+        TextView debugHint = (TextView) findViewById(R.id.debugHint);
+        debugHint.setText("Debug Hint: " + String.valueOf(randy));
+        //int guess = Integer.parseInt(guessEditText.getText().toString());
         //EditText countMessage = (EditText) findViewById(R.id.countMessage);
 
         //call listener
         View view = findViewById(R.id.checkNum);
-        MyButtonClickListener listener = new MyButtonClickListener(randy, guessEditText, guess);
+        MyButtonClickListener listener = new MyButtonClickListener(randy, guessEditText);
         view.setOnClickListener(listener);
 
     }

@@ -16,6 +16,13 @@ public class ResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
+
+        Bundle extras = getIntent().getExtras();
+        String value = extras.getString("GUESSES");
+
+        TextView results = (TextView) findViewById(R.id.guessCount);
+        results.setText(value);
+
         Button reStartGame = (Button) findViewById(R.id.reStartGame);
         reStartGame.setOnClickListener(new View.OnClickListener()
         {

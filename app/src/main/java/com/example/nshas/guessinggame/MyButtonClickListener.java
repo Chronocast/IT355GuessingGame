@@ -18,10 +18,10 @@ class MyButtonClickListener implements View.OnClickListener {
     String concatenatedText;
 
     //constructor
-    public MyButtonClickListener(int randy, EditText guessEditText, int guess) {
+    public MyButtonClickListener(int randy, EditText guessEditText) {
         this.randy = randy;
         this.guessEditText = guessEditText;
-        this.guess = guess;
+        //this.guess = guess;
     }
 
     @Override
@@ -31,18 +31,20 @@ class MyButtonClickListener implements View.OnClickListener {
         {
             concatenatedText = "Why, we must have a number to count! Ah-ah-ah!";
         }else{
+            guess = Integer.parseInt(guessEditText.getText().toString());
             if(guess > randy)
             {
                 tries++;
-                concatenatedText = tries + " gueses! Ah-ah-ah! This is too high!";
+                concatenatedText = tries + " guesses! Ah-ah-ah! This is too high!";
             }else if(guess < randy){
                 tries++;
-                concatenatedText = tries + " gueses! Ah-ah-ah! This is too low!";
+                concatenatedText = tries + " guesses! Ah-ah-ah! This is too low!";
             }else if(guess == randy){
                 tries++;
-                concatenatedText = tries + " gueses! Ah-ah-ah! This is the number!";
+                concatenatedText = tries + " guesses! Ah-ah-ah! This is the number!";
                 Intent resultIntent = new Intent(v.getContext(), ResultsActivity.class);
-                resultIntent.putExtra("guess", guess);
+                String attempts = "" + tries;
+                resultIntent.putExtra("GUESSES", attempts);
                 v.getContext().startActivity(resultIntent);
             }
 
